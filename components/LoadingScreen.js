@@ -11,16 +11,17 @@ export default function LoadingScreen({ done }) {
       setProgress(100);
       return;
     }
-    let cancelled = false;
-    const tick = () => {
-      if (cancelled) return;
-      setProgress((p) => Math.min(96, p + Math.random() * 14 + 4));
-      setTimeout(tick, 240);
+    let raf;
+    const start = performance.now();
+    const duration = 2200;
+    const tick = (now) => {
+      const t = Math.min(1, (now - start) / duration);
+      const eased = 1 - Math.pow(1 - t, 3);
+      setProgress(Math.min(96, eased * 96));
+      if (t < 1) raf = requestAnimationFrame(tick);
     };
-    tick();
-    return () => {
-      cancelled = true;
-    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
   }, [done]);
 
   return (
