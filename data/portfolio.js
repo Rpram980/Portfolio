@@ -27,7 +27,7 @@ export const profile = {
 };
 
 export const stats = [
-  { label: 'Years of Hands-On Experience', value: 2, suffix: '+' },
+  { label: 'Year of Hands-On Experience', value: 1, suffix: '+' },
   { label: 'Production Projects Delivered', value: 12, suffix: '+' },
   { label: 'Cloud & AI Certifications', value: 4, suffix: '' },
   { label: 'MCA CGPA', value: 9.56, suffix: '/10', decimals: 2 },
